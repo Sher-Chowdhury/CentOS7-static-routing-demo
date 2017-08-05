@@ -21,11 +21,12 @@ Vagrant.configure(2) do |config|
   config.vm.define "routingvm" do |routingvm_config|
     routingvm_config.vm.box = "bento/centos-7.3"
     routingvm_config.vm.hostname = "routingvm.local"
-    routingvm_config.vm.network "private_network", ip: "192.168.10.100", :netmask => "255.255.255.0"
-    routingvm_config.vm.network "private_network", ip: "10.0.0.10", :netmask => "255.255.255.0"
+    # https://www.vagrantup.com/docs/virtualbox/networking.html
+    routingvm_config.vm.network "private_network", ip: "192.168.10.100", :netmask => "255.255.255.0", virtualbox__intnet: "intnet1"
+    routingvm_config.vm.network "private_network", ip: "10.0.0.10", :netmask => "255.255.255.0", virtualbox__intnet: "intnet2"
 
     routingvm_config.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      vb.gui = true
       vb.memory = "1024"
       vb.cpus = 2
       vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
@@ -40,10 +41,10 @@ Vagrant.configure(2) do |config|
   config.vm.define "box1" do |box1_config|
     box1_config.vm.box = "bento/centos-7.3"
     box1_config.vm.hostname = "box1.local"
-    box1_config.vm.network "private_network", ip: "192.168.10.101", :netmask => "255.255.255.0"
+    box1_config.vm.network "private_network", ip: "192.168.10.101", :netmask => "255.255.255.0", virtualbox__intnet: "intnet1"
 
     box1_config.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      vb.gui = true
       vb.memory = "1024"
       vb.cpus = 2
       vb.name = "centos7_box1"
@@ -55,10 +56,10 @@ Vagrant.configure(2) do |config|
   config.vm.define "box2" do |box2_config|
     box2_config.vm.box = "bento/centos-7.3"
     box2_config.vm.hostname = "box2.local"
-    box2_config.vm.network "private_network", ip: "10.0.0.11", :netmask => "255.255.255.0"
+    box2_config.vm.network "private_network", ip: "10.0.0.11", :netmask => "255.255.255.0", virtualbox__intnet: "intnet2"
 
     box2_config.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      vb.gui = true
       vb.memory = "1024"
       vb.cpus = 2
       vb.name = "centos7_box2"
