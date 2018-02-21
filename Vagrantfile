@@ -19,7 +19,8 @@ end
 
 Vagrant.configure(2) do |config|
   config.vm.define "routingvm" do |routingvm_config|
-    routingvm_config.vm.box = "bento/centos-7.3"
+    #routingvm_config.vm.box = "bento/centos-7.3"
+    routingvm_config.vm.box = "bento/centos-7.4"
     routingvm_config.vm.hostname = "routingvm.local"
     # https://www.vagrantup.com/docs/virtualbox/networking.html
     routingvm_config.vm.network "private_network", ip: "192.168.10.100", :netmask => "255.255.255.0", virtualbox__intnet: "intnet1"
@@ -27,19 +28,22 @@ Vagrant.configure(2) do |config|
 
     routingvm_config.vm.provider "virtualbox" do |vb|
       vb.gui = true
-      vb.memory = "1024"
+      vb.memory = "2048"
       vb.cpus = 2
       vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
       vb.name = "centos7_routingvm"
     end
 
     routingvm_config.vm.provision "shell", path: "scripts/install-rpms.sh", privileged: true
+    routingvm_config.vm.provision "shell", path: "scripts/install-gnome-gui.sh", privileged: true
+    routingvm_config.vm.provision :reload
   end
 
 
 
   config.vm.define "box1" do |box1_config|
-    box1_config.vm.box = "bento/centos-7.3"
+    #box1_config.vm.box = "bento/centos-7.3"
+    box1_config.vm.box = "bento/centos-7.4"
     box1_config.vm.hostname = "box1.local"
     box1_config.vm.network "private_network", ip: "192.168.10.101", :netmask => "255.255.255.0", virtualbox__intnet: "intnet1"
 
@@ -54,7 +58,8 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "box2" do |box2_config|
-    box2_config.vm.box = "bento/centos-7.3"
+    #box2_config.vm.box = "bento/centos-7.3"
+    box2_config.vm.box = "bento/centos-7.4"
     box2_config.vm.hostname = "box2.local"
     box2_config.vm.network "private_network", ip: "10.0.0.11", :netmask => "255.255.255.0", virtualbox__intnet: "intnet2"
 
