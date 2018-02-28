@@ -10,4 +10,5 @@ yum install -y epel-release
 yum install -y vim 
 yum install -y bash-completion 
 yum install -y mtr
+yum install -y man-pages
 yum install -y traceroute 
