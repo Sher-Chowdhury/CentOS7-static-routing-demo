@@ -42,12 +42,15 @@ vagrant-puppetmaster4
 
 ```
 
-'box1', 'box2', and 'routingvm'
+'box1', 'box2', and 'routingvm' are all CentOS 7 boxes. 
 
-The aim of this exercise is to configure routing on 'routingvm' on the routingvm box, so that 
+The aim of this exercise is to configure the above environment so that running the following command from box1 is successful:
 
-You can log into all of the above boxes using the following credentials.
+```
+$ ping -c 3 10.0.0.11
+```
+
 
 For more info, see:
 
-https://codingbee.net/tutorials/rhce/rhce-routing-network-traffic-and-configuring-static-routes 
+https://codingbee.net/tutorials/rhce/routing-network-traffic-and-configuring-static-routes-on-centos-rhel-7
