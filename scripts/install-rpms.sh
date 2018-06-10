@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+exit 0
 set -ex
 
 echo '##########################################################################'
@@ -14,6 +14,8 @@ yum install -y mtr
 yum install -y man-pages
 yum install -y traceroute 
 yum install -y nc
+yum install -y nc
+yum install -y elinks 
 
 
 # Do a few more stuff. 

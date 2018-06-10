@@ -20,7 +20,7 @@ end
 Vagrant.configure(2) do |config|
   config.vm.define "routingvm" do |routingvm_config|
     #routingvm_config.vm.box = "bento/centos-7.3"
-    routingvm_config.vm.box = "bento/centos-7.4"
+    routingvm_config.vm.box = "bento/centos-7.5"
     routingvm_config.vm.hostname = "routingvm.local"
     # https://www.vagrantup.com/docs/virtualbox/networking.html
     routingvm_config.vm.network "private_network", ip: "192.168.10.100", :netmask => "255.255.255.0", virtualbox__intnet: "intnet1"
@@ -42,7 +42,7 @@ Vagrant.configure(2) do |config|
 
 
   config.vm.define "box1" do |box1_config|
-    box1_config.vm.box = "bento/centos-7.4"
+    box1_config.vm.box = "bento/centos-7.5"
     box1_config.vm.hostname = "box1.local"
     box1_config.vm.network "private_network", ip: "192.168.10.101", :netmask => "255.255.255.0", virtualbox__intnet: "intnet1"
 
@@ -58,7 +58,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "box2" do |box2_config|
-    box2_config.vm.box = "bento/centos-7.4"
+    box2_config.vm.box = "bento/centos-7.5"
     box2_config.vm.hostname = "box2.local"
     box2_config.vm.network "private_network", ip: "10.0.0.11", :netmask => "255.255.255.0", virtualbox__intnet: "intnet2"
 
